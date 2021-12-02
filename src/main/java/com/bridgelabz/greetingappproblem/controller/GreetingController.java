@@ -34,5 +34,13 @@ public class GreetingController {
     public String Greeting(){
         return greetingService.greet();
     }
-
+    /**
+     * Purpose : Ability for the Greeting App to give Greeting message with First Name And Last Name
+     *
+     * @return FirstName And LastName
+     */
+    @RequestMapping(value = "/test1", method = RequestMethod.GET)
+    public String test1(@RequestParam String firstName, @RequestParam String lastName) {
+        return "Hello : " + firstName + " " + lastName;
+    }
 }
