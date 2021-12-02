@@ -1,9 +1,8 @@
 package com.bridgelabz.greetingappproblem.controller;
 
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import com.bridgelabz.greetingappproblem.service.GreetingService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Purpose : Greeting Controller to Solve Diffferent Methods
@@ -15,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class GreetingController {
 
+    @Autowired
+    GreetingService greetingService;
     /**
      * Purpose : GET Request method is used to get greeting hello message from BridgeLabz using RestController
      *
@@ -24,7 +25,14 @@ public class GreetingController {
     public String test(@RequestBody String message ){
         return "Message:" + message;
     }
-
-
+    /**
+     * Purpose : GET Request method is used  and Extended Greeting Controller to use Service Layer to get Simple Greeting message : Hello World
+     *
+     * @return Hello World
+     */
+    @GetMapping(value="/greetmessage")
+    public String Greeting(){
+        return greetingService.greet();
+    }
 
 }
