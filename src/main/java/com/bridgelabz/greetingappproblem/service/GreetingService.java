@@ -22,37 +22,44 @@ public class GreetingService {
     @Autowired
     GreetingRepository greetingRepository;
 
-    public String greet(){
+    public String greet() {
         return "Hello World";
     }
 
-    public GreetingModel addGreeting (GreetingDto greetingDto){
-       GreetingModel greetingModel = new GreetingModel();
-       greetingModel.setMessage(greetingDto.getMessage());
+    public GreetingModel addGreeting(GreetingDto greetingDto) {
+        GreetingModel greetingModel = new GreetingModel();
+        greetingModel.setMessage(greetingDto.getMessage());
         return greetingRepository.save(greetingModel);
     }
 
     public GreetingModel getGreetingById(int id) {
         Optional<GreetingModel> greetingModel = greetingRepository.findById(id);
-        if(greetingModel.isPresent()){
+        if (greetingModel.isPresent()) {
             return greetingModel.get();
         }
         return null;
     }
 
     public List<GreetingModel> greetings() {
-    return greetingRepository.findAll();
+        return greetingRepository.findAll();
     }
 
     public GreetingModel updateGreeting(int id, GreetingDto greetingDto) {
-    Optional<GreetingModel>optionalGreetingModel = greetingRepository.findById(id);
-    if(optionalGreetingModel.isPresent()){
-        GreetingModel greetingModel = optionalGreetingModel.get();
-        greetingModel.setMessage(greetingDto.getMessage());
-        return greetingRepository.save(greetingModel);
-    }
-    return null;
+        Optional<GreetingModel> optionalGreetingModel = greetingRepository.findById(id);
+        if (optionalGreetingModel.isPresent()) {
+            GreetingModel greetingModel = optionalGreetingModel.get();
+            greetingModel.setMessage(greetingDto.getMessage());
+            return greetingRepository.save(greetingModel);
+        }
+        return null;
     }
 
-
+    public String deleteGreeting(int id) {
+        Optional<GreetingModel> greetingModel = greetingRepository.findById(id);
+        if (greetingModel.isPresent()) {
+            greetingRepository.delete(greetingModel.get());
+            return "Record is deleted Successfully";
+        }
+        return "Record is not found";
+    }
 }

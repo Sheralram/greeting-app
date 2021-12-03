@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
  * @version : 0.0.1
  * @since : 01-12-2021
  */
+
 @Repository
 public interface GreetingRepository extends JpaRepository<GreetingModel, Integer> {
 }

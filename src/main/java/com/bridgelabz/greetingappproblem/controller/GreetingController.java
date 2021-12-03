@@ -90,4 +90,14 @@ public class GreetingController {
         return greetingService.updateGreeting(id, greetingDto);
     }
 
+    /**
+     * Purpose : Ability for the Greeting App to delete Greeting messages by id in the Repository
+     *
+     * @return delete Messages
+     */
+    @DeleteMapping(value = "/delete")
+    public String deleteGreeting(@RequestParam int id){
+        return greetingService.deleteGreeting(id);
+    }
+
 }

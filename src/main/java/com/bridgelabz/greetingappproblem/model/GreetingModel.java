@@ -14,6 +14,7 @@ import javax.persistence.Id;
  * @version : 0.0.1
  * @since : 01-12-2021
  */
+
 @Entity
 @Data
 public class GreetingModel {
