@@ -53,6 +53,16 @@ public class GreetingController {
      public GreetingModel addStudent (@RequestBody GreetingModel greetingModel){
      return greetingService.addGreeting(greetingModel);
         }
+    /**
+     * Purpose : Ability for the Greeting App to find Greeting message by id in the Repository
+     *
+     * @return  Find by id : Message
+     */
+
+    @GetMapping(value="/find-By-Id")
+    public GreetingModel getStudentById(@RequestParam int id){
+        return  greetingService.getGreetingById(id);
+    }
 
 
 }
