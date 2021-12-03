@@ -1,11 +1,12 @@
 package com.bridgelabz.greetingappproblem.controller;
 
+import com.bridgelabz.greetingappproblem.model.GreetingModel;
 import com.bridgelabz.greetingappproblem.service.GreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * Purpose : Greeting Controller to Solve Diffferent Methods
+ * Purpose : Greeting Controller to Solve Different Methods
  *
  * @author : Ramkrishna Sheral
  * @version : 0.0.1
@@ -43,4 +44,15 @@ public class GreetingController {
     public String test1(@RequestParam String firstName, @RequestParam String lastName) {
         return "Hello : " + firstName + " " + lastName;
     }
+    /**
+     * Purpose : Ability for the Greeting App to save Greeting message in the Repository
+     *
+     * @return id,FirstName,LastName And Message
+     */
+     @PostMapping(value = "/addGreeting")
+     public GreetingModel addStudent (@RequestBody GreetingModel greetingModel){
+     return greetingService.addGreeting(greetingModel);
+        }
+
+
 }
