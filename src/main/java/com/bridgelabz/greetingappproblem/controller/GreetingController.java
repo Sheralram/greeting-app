@@ -1,9 +1,13 @@
 package com.bridgelabz.greetingappproblem.controller;
 
+import com.bridgelabz.greetingappproblem.dto.GreetingDto;
 import com.bridgelabz.greetingappproblem.model.GreetingModel;
 import com.bridgelabz.greetingappproblem.service.GreetingService;
+import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Purpose : Greeting Controller to Solve Different Methods
@@ -50,8 +54,9 @@ public class GreetingController {
      * @return id,FirstName,LastName And Message
      */
      @PostMapping(value = "/addGreeting")
-     public GreetingModel addStudent (@RequestBody GreetingModel greetingModel){
-     return greetingService.addGreeting(greetingModel);
+
+     public GreetingModel addStudent (@RequestBody GreetingDto greetingDto){
+     return greetingService.addGreeting(greetingDto);
         }
     /**
      * Purpose : Ability for the Greeting App to find Greeting message by id in the Repository
@@ -63,6 +68,26 @@ public class GreetingController {
     public GreetingModel getStudentById(@RequestParam int id){
         return  greetingService.getGreetingById(id);
     }
+    /**
+     * Purpose : Ability for the Greeting App to List all Greeting messages in the Repository
+     *
+     * @return  List Messages
+     */
 
+    @GetMapping(value="/getAllMessages")
+    public List<GreetingModel> getAllGreetings(){
+        return  greetingService.greetings();
+    }
+    /**
+     * Purpose : Ability for the Greeting App to update  Greeting messages by id in the Repository
+     *
+     * @return  update Messages
+     */
+
+    @PutMapping(value = "/updateGreeting")
+    public GreetingModel updateGreeting(@PathVariable int id,
+                                         @RequestBody GreetingDto greetingDto){
+        return greetingService.updateGreeting(id, greetingDto);
+    }
 
 }
